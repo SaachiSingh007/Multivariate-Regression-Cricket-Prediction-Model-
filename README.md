@@ -1,0 +1,1 @@
+The objective of my project was to analyze Cricket statistics to devise an advanced metric-based model that is an overall indicator of a player’s performance and their contribution to a match outcome, by creating a Python-based multiple linear regression model that analyzed and learnt from historical data to predict future performances by players. 
