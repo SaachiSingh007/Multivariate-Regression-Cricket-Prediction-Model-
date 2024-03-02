@@ -1,0 +1,102 @@
+import pandas as pd
+df = pd.read_csv('final_data.csv')
+#df.head()
+
+df.pop('Opposition')
+df.pop('Ground')
+df.pop('Start Date')
+df.pop('Bat1')
+df.pop('Match Reference')
+
+corr_matrix = df.corr()
+#print(corr_matrix)
+
+import seaborn as sns
+sns.heatmap(corr_matrix, cmap="Greens",annot=True)
+
+from matplotlib import pyplot as plt
+plt.figure(figsize=(12,8))
+plt.show()
+
+
+
+import pandas as pd
+df = pd.read_csv('final_data.csv')
+#df.head()
+
+df.pop('Opposition')
+df.pop('Ground')
+df.pop('Start Date')
+df.pop('Bat1')
+df.pop('Match Reference')
+
+corr_matrix = df.corr()
+#print(corr_matrix)
+
+import seaborn as sns
+sns.heatmap(corr_matrix, cmap="Greens",annot=True)
+
+from matplotlib import pyplot as plt
+plt.figure(figsize=(12,8))
+plt.show()
+
+#Plot Balls Faced and Strike Rate
+#plt.scatter(y_test, y_pred)
+plt.title('Balls faced vs. Strike Rate')
+plt.xlabel('BF')
+plt.ylabel('SR')
+plt.show()
+
+# Apply the default theme
+sns.set_theme()
+
+sns.relplot(
+    data=new_data,
+    x="BF", y="SR", col="Start Date",
+    hue="smoker", style="smoker", size="size",
+)
+
+
+#Plot Balls Faced and Run Scored
+#plt.scatter(y_test, y_pred)
+plt.title('Balls Faced and Run Scored')
+plt.xlabel('BF')
+plt.ylabel('Runs')
+plt.show()
+
+
+#Plot ICC Ranking and Run Scored
+#plt.scatter(y_test, y_pred)
+plt.title('ICC Rating and Run Scored')
+plt.xlabel('ICC Rating')
+plt.ylabel('Runs')
+plt.show()
+
+
+#Plot ICC Ranking and Fitness
+#plt.scatter(y_test, y_pred)
+plt.title('ICC Rating and Fitness')
+plt.xlabel('ICC Rating')
+plt.ylabel('Fitness')
+plt.show()
+
+#Plot ICC Ranking and Family
+#plt.scatter(y_test, y_pred)
+plt.title('ICC Ranting and Family')
+plt.xlabel('ICC Rating')
+plt.ylabel('Family')
+plt.show()
+
+#Plot ICC Ranking and Family
+#plt.scatter(y_test, y_pred)
+plt.title('Runs and Fitness')
+plt.xlabel('ICC Rating')
+plt.ylabel('Runs')
+plt.show()
+
+#Plot ICC Ranking and Family
+#plt.scatter(y_test, y_pred)
+plt.title('Runs and Family')
+plt.xlabel('Family')
+plt.ylabel('Runs')
+plt.show()
