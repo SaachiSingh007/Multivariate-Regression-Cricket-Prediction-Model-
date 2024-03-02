@@ -1,0 +1,86 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import sklearn
+from sklearn.linear_model import LinearRegression
+
+from matplotlib import pyplot as plt
+
+new_data = pd.read_csv('final_data.csv')
+
+#new_data = new_data.replace('-', '0')
+#new_data = new_data.replace('*', '')
+print(new_data)
+
+
+#df = new_data.iloc[:, [0, 4, 0, -2]]
+#df.columns = ['Start Date', 'Runs', 'SR', 'Bat1']
+
+
+#print(df.head(2))
+#print(f'\nThe date range: {df.Start Date.min()}/{ df.Start Date.max()}')
+#df = df.set_index('Start Date')
+#plt.plot("df.index", df['Runs'])
+#plt.plot("df.index", df['SR'])
+
+
+#define depenent and independent variables
+
+X = new_data.iloc[:,-5:]
+y = new_data.iloc[:,1]
+
+
+# Splitting Training and Testing dataset
+from sklearn.model_selection import train_test_split
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.4, random_state = 5)
+
+# Fitting Multiple Linear Regression to the Training set
+from sklearn.linear_model import LinearRegression
+regressor = LinearRegression()
+regressor.fit(X_train, y_train)
+
+print(regressor.score(X_test, y_test))
+
+# Predicting the Test set results
+y_pred = regressor.predict(X_test)
+
+
+from sklearn.metrics import r2_score
+
+
+r2 = r2_score(y_test, y_pred)
+
+print("R2 score calculated:", r2)
+
+#plt.scatter(X_test, y_test, color ='b')
+plt.plot(X_test, y_pred, color ='k')
+plt.show()
+
+#r2 score
+from sklearn.metrics import r2_score
+score=r2_score(y_test,y_pred)
+
+#fstat
+K = 2
+N = 283
+fstat = (score/(1-score))*((N-K-1)/K)
+
+#adjusted r2 score
+Adj_r2 = 1 - (1 - score) * (len(y)-1) / (len(y)-X.shape[1]-1)
+
+#P_Value
+from sklearn.feature_selection import chi2
+scores, pvalues = chi2(X, y)
+
+#print('Y Predictors=' + str(y_pred))
+print('R^2 Score= ' + str(score))
+print('F Statistic= ' + str(fstat))
+print('Adjusted R^2 Score= ' + str(Adj_r2))
+print('P Values= ' + str(pvalues))
+
+plt.scatter(y_test, y_pred, color='g')
+#plt.plot(X_test, y_pred, color='k')
+plt.title('Rating vs. Runs Scored')
+plt.xlabel('Rating')
+plt.ylabel('Runs Scored')
+plt.show()
