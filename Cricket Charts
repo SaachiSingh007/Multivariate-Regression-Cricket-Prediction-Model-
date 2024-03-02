@@ -1,0 +1,63 @@
+import pandas as pd
+df = pd.read_csv('final_data.csv')
+print(df)
+
+df.pop('Opposition')
+df.pop('Ground')
+df.pop('Start Date')
+df.pop('Bat1')
+df.pop('Match Reference')
+
+corr_matrix = df.corr()
+#print(corr_matrix)
+
+import seaborn as sns
+sns.heatmap(corr_matrix, cmap="Greens",annot=True)
+
+from matplotlib import pyplot as plt
+plt.figure(figsize=(12,8))
+plt.show()
+
+#Plot Balls Faced and Run Scored
+plt.scatter(df.BF, df.Runs)
+plt.title('Balls Faced vs. Run Scored')
+plt.xlabel('BF')
+plt.ylabel('Runs')
+plt.show()
+
+
+#Plot ICC Ranking and Run Scored
+plt.scatter(df.ICC_Rating, df.Runs)
+plt.title('ICC Rating vs. Run Scored')
+plt.xlabel('ICC_Rating')
+plt.ylabel('Runs')
+plt.show()
+
+
+#Plot ICC Ranking and Fitness
+plt.scatter(df.ICC_Rating, df.Injury)
+plt.title('ICC Rating vs. Fitness')
+plt.xlabel('ICC Rating')
+plt.ylabel('Fitness')
+plt.show()
+
+#Plot ICC Ranking and Family
+plt.scatter(df.ICC_Rating, df.Family)
+plt.title('ICC Rating vs. Family')
+plt.xlabel('ICC Rating')
+plt.ylabel('Family')
+plt.show()
+
+#Plot ICC Ranking and Family
+plt.scatter(df.Injury, df.Runs)
+plt.title('Fitness vs. Runs')
+plt.xlabel('Injury')
+plt.ylabel('Runs')
+plt.show()
+
+#Plot ICC Ranking and Family
+plt.scatter(df.Family, df.Runs)
+plt.title('Runs vs. Family')
+plt.xlabel('Family')
+plt.ylabel('Runs')
+plt.show()
